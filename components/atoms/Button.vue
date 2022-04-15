@@ -23,6 +23,7 @@ export default {
 
 button:hover {
   cursor: pointer;
-  background-color: #0054d2;
+  background-color: #3f50b5;
+  color: white;
 }
 </style>

@@ -1,8 +1,13 @@
 <template>
-  <div style="margin: 20px; background-color: #c2c2c2; padding: 30px">
+  <div
+    v-if="isShowDetail"
+    style="margin: 20px; background-color: #92defc; padding: 30px; color: black"
+  >
     <h4>Order Detail</h4>
-    <CardItem />
-    <card-item style="padding: 20px 0px 20px 0px" />
+    <CardItem
+      :user-info="userInfo"
+      style="padding: 20px 0px 20px 0px; font-size: small"
+    />
     <div class="card-detail">
       <div>
         <p>Voucher Code</p>
@@ -26,17 +31,27 @@
       </div>
     </div>
     <div style="padding: 20px 0px">
-      <AtomsButton content="Oke" style="float: right" />
+      <AtomsButton
+        @click="$emit('close-card')"
+        content="Oke"
+        style="float: right"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import CardItem from "./CardItem.vue";
 export default {
+  components: { CardItem },
   props: {
     userInfo: {
       type: Object,
       default: () => {},
+    },
+    isShowDetail: {
+      type: Boolean,
+      default: false,
     },
   },
 };
@@ -44,10 +59,11 @@ export default {
 ds
 <style>
 .card-detail {
+  font-size: small;
   font-weight: 600;
   line-height: 1.8;
   display: flex;
-  border: 1px solid black;
+  border: 2px solid indigo;
   padding: 10px 34px;
 }
 </style>

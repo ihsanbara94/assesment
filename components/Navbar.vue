@@ -22,6 +22,8 @@ export default {};
 .container {
   display: flex;
   align-items: center;
+  background-color: white;
+  width: 100%;
   padding: 0.5rem;
 }
 
