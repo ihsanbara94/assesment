@@ -114,7 +114,7 @@ export default {
   methods: {
     getDataUser() {
       axios
-        .get("http://demo3267455.mockable.io/order")
+        .get("https://demo3267455.mockable.io/order")
         .then((res) => {
           this.users = res.data;
           this.getCurrentPage();
