@@ -1,7 +1,7 @@
 <template>
   <div class="container shadow">
     <img
-      src="/images/seakunid.png"
+      :src="require('/images/seakunid.png')"
       width="40"
       height="40"
       alt="image not found"
