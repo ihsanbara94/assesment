@@ -50,7 +50,7 @@ export default {
 
 <style>
 .container-card {
-  padding: 20px;
+  margin: 20px;
 }
 .header-card {
   width: 100%;
