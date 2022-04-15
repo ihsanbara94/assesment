@@ -1,0 +1,29 @@
+<div style="margin: 20px; background-color: #c2c2c2; padding: 30px">
+      <h4>Order Detail</h4>
+      <!-- <card-item style="padding: 20px 0px 20px 0px" /> -->
+      <div class="card-detail">
+        <div>
+          <p>Voucher Code</p>
+          <p>Payment Status</p>
+          <p>Payment Date</p>
+          <p>Payment Bank</p>
+        </div>
+        <div style="padding-left: 10px">
+          <p>
+            : <span>{{ user.voucher }}</span>
+          </p>
+          <p>
+            : <span>{{ user.payment.status }}</span>
+          </p>
+          <p>
+            : <span>{{ user.createdAt }}</span>
+          </p>
+          <p>
+            : <span>{{ user.payment.bank }}</span>
+          </p>
+        </div>
+      </div>
+      <div style="padding: 20px 0px">
+        <AtomsButton content="Oke" style="float: right" />
+      </div>
+    </div>
