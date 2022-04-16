@@ -65,5 +65,6 @@ ds
   display: flex;
   border: 2px solid indigo;
   padding: 10px 34px;
+  margin: 20px;
 }
 </style>

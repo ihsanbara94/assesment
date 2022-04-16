@@ -29,7 +29,7 @@
         </div>
         <div>
           <p class="bold" style="font-size: x-large">
-            Rp. <span>{{ userInfo.payment.paymentTotal }}</span>
+            {{ setCurrency(userInfo.payment.paymentTotal) }}
           </p>
         </div>
       </div>
@@ -43,6 +43,12 @@ export default {
     userInfo: {
       type: Object,
       default: () => {},
+    },
+  },
+  methods: {
+    setCurrency(harga) {
+      const price = harga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      return `Rp${price}`;
     },
   },
 };
