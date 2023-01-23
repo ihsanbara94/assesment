@@ -133,7 +133,7 @@ export default {
     getDataUser() {
       axios
         // .get("http://demo2378145.mockable.io/seakun-intern-fe")
-        .get("http://demo9503260.mockable.io/seakun-intern-fe")
+        .get("https://mocki.io/v1/a6f0c63f-5e71-4876-94f7-2131aaf1edaa")
         .then((res) => {
           this.users = res.data.data;
           this.getCurrentPage();
