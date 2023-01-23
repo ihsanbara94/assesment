@@ -102,7 +102,7 @@ export default {
       searchKey: "",
       value: "",
       filter: "Sort",
-      filterProvide: "Filter Provide",
+      filterProvide: "Filter Provider",
       isOpenFilter: false,
       isOpenProvider: false,
       listDropdown: ["Ascending", "Descending"],
