@@ -2,19 +2,27 @@
   <div class="container-card">
     <div
       class="grid-card"
-      style="grid-template-columns: auto auto; justify-content: space-between"
+      style="
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+        font-size: 0.7em;
+      "
     >
       <div>
-        Order Id: <span class="bold">{{ userInfo.orderId }}</span>
+        <span class="bold">{{ userInfo.orderId }}</span
+        ><span class="bold"> &#8226 {{ userInfo.provider.code }}</span>
+        <span class="bold"> - {{ userInfo.provider.duration }}</span>
+        <span class="bold"> &#8226 {{ userInfo.status }}</span>
+        <span class="bold">  {{ userInfo.provider.isPreOrder?"&#8226 Pre-order":"" }}</span>
       </div>
       <div>Created At: {{ userInfo.createdAt }}</div>
     </div>
     <div class="grid-card" style="border-style: none solid solid solid">
       <div class="account-info" style="line-height: 1.8">
         <p>Info Akun</p>
-        <p class="bold">{{ userInfo.personalAccount.name }}</p>
-        <p class="bold">{{ userInfo.personalAccount.email }}</p>
-        <p class="bold">{{ userInfo.personalAccount.phonenumber }}</p>
+        <p class="bold">{{ userInfo.user.name }}</p>
+        <p class="bold">{{ userInfo.user.email }}</p>
+        <p class="bold">{{ userInfo.user.phoneNumber }}</p>
       </div>
       <div class="packet-info">
         <div>
@@ -23,13 +31,13 @@
           <p>Exp</p>
         </div>
         <div>
-          <p class="bold">{{ userInfo.provider }}</p>
-          <p class="bold">{{ userInfo.packet }}</p>
-          <p class="bold">{{ userInfo.expired }}</p>
+          <p class="bold">{{ userInfo.provider.name }}</p>
+          <p class="bold">{{ userInfo.provider.packet }}</p>
+          <p class="bold">{{ userInfo.expiredAt }}</p>
         </div>
         <div>
           <p class="bold" style="font-size: x-large">
-            {{ setCurrency(userInfo.payment.paymentTotal) }}
+            {{ setCurrency(userInfo.provider.price) }}
           </p>
         </div>
       </div>

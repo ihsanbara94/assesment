@@ -15,7 +15,7 @@ export default {
 
 <style>
 .styleButton {
-  color: #52af9d;
+  color: #6c7fe1;
   padding: 0.25rem 0.75rem;
   font-size: 5 rem;
   font-weight: 700;

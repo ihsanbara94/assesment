@@ -1,12 +1,14 @@
 <template>
   <div class="container shadow">
-    <img
-      :src="require('~/assets/images/seakunid.png')"
-      width="40"
-      height="40"
-      alt="image not found"
-      class="rounded-full"
-    />
+    <NuxtLink to="/">
+      <img
+        :src="require('~/assets/images/seakunid.png')"
+        width="40"
+        height="40"
+        alt="image not found"
+        class="rounded-full"
+    /></NuxtLink>
+
     <span style="font-weight: 700; color: #52af9d">Seakun.id</span>
   </div>
 </template>

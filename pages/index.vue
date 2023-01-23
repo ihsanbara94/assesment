@@ -11,7 +11,7 @@
           <div>
             <input
               type="text"
-              placeholder="search by id/email"
+              placeholder="search user name"
               style="padding: 0.25rem 0.75rem"
               v-model="searchKey"
               @keyup.enter="getCurrentPage()"
@@ -19,13 +19,23 @@
             <Button content="Submit" @click="getCurrentPage()" />
           </div>
 
-          <Dropdown
-            @click="dropdownFilter"
-            :listDropdown="listDropdown"
-            :choosedList="filter"
-            :isOpen="isOpenFilter"
-            @click-list="chooseFilter"
-          />
+          <div>
+            <Dropdown
+              @click="dropdownFilterProvider"
+              :listDropdown="listProvider"
+              :choosedList="filterProvide"
+              :isOpen="isOpenProvider"
+              @click-list="chooseFilterProvider"
+            />
+
+            <Dropdown
+              @click="dropdownFilter"
+              :listDropdown="listDropdown"
+              :choosedList="filter"
+              :isOpen="isOpenFilter"
+              @click-list="chooseFilter"
+            />
+          </div>
         </div>
 
         <div @click="toDetail(user)" v-for="(user, id) in search" :key="id">
@@ -79,7 +89,6 @@ import Navbar from "../components/Navbar.vue";
 import Button from "~/components/atoms/Button";
 import Dropdown from "~/components/atoms/Dropdown.vue";
 import Detail from "../components/Detail.vue";
-// import Pagination from "../components/Pagination.vue";
 export default {
   components: { Navbar, CardItem, Button, Dropdown, Detail },
   name: "IndexPage",
@@ -93,8 +102,17 @@ export default {
       searchKey: "",
       value: "",
       filter: "Sort",
+      filterProvide: "Filter Provide",
       isOpenFilter: false,
+      isOpenProvider: false,
       listDropdown: ["Ascending", "Descending"],
+      listProvider: [
+        "Canva",
+        "Youtube",
+        "Nintendo Switch",
+        "Netflix",
+        "Apple One",
+      ],
       page: 1,
       perPage: 5,
       pages: [],
@@ -114,9 +132,9 @@ export default {
   methods: {
     getDataUser() {
       axios
-        .get("https://demo3267455.mockable.io/order")
+        .get("http://demo2378145.mockable.io/seakun-intern-fe")
         .then((res) => {
-          this.users = res.data;
+          this.users = res.data.data;
           this.getCurrentPage();
           this.setPages(this.users);
           console.log(this.pages);
@@ -129,19 +147,25 @@ export default {
       this.detailUser = user;
       this.isShowDetail = true;
       console.log(this.isShowDetail);
+      console.log(user);
     },
     dropdownFilter() {
       this.isOpenFilter = !this.isOpenFilter;
     },
+    dropdownFilterProvider() {
+      this.isOpenProvider = !this.isOpenProvider;
+    },
     chooseFilter(param) {
       console.log(param);
       if (param === "Ascending") {
+        this.isOpenFilter = false;
         this.search = this.search.sort(
           (a, b) =>
             parseInt(a.createdAt.split("-").join("")) -
             parseInt(b.createdAt.split("-").join(""))
         );
       } else if (param === "Descending") {
+        this.isOpenFilter = false;
         this.search = this.search.sort(
           (a, b) =>
             parseInt(b.createdAt.split("-").join("")) -
@@ -151,22 +175,53 @@ export default {
         console.log(param);
       }
     },
-    getKeywords() {
-      if (this.searchKey) {
+    chooseFilterProvider(param) {
+      console.log(param);
+      if (param === "Canva") {
+        this.page = 1;
         this.search = [];
+        this.isOpenProvider = false;
         this.search = this.users.filter((user) => {
-          return (
-            user.personalAccount.email.match(this.searchKey) ||
-            user.orderId.match(this.searchKey)
-          );
+          return user.provider.name.match("Canva");
+        });
+        this.setPages(this.search);
+      } else if (param === "Youtube") {
+        this.page = 1;
+        this.search = [];
+        this.isOpenProvider = false;
+        this.search = this.users.filter((user) => {
+          return user.provider.name.match("Youtube");
+        });
+        this.setPages(this.search);
+      } else if (param === "Nintendo Switch") {
+        this.page = 1;
+        this.search = [];
+        this.isOpenProvider = false;
+        this.search = this.users.filter((user) => {
+          return user.provider.name.match("Nintendo Switch");
+        });
+        this.setPages(this.search);
+      } else if (param === "Netflix") {
+        this.page = 1;
+        this.search = [];
+        this.isOpenProvider = false;
+        this.search = this.users.filter((user) => {
+          return user.provider.name.match("Netflix");
+        });
+        this.setPages(this.search);
+      } else if (param === "Apple One") {
+        this.page = 1;
+        this.search = [];
+        this.isOpenProvider = false;
+        this.search = this.users.filter((user) => {
+          return user.provider.name.match("Apple One");
         });
         this.setPages(this.search);
       } else {
-        this.page = 1;
-        this.getCurrentPage();
-        this.setPages(this.users);
+        console.log(param);
       }
     },
+
     closeCard() {
       this.isShowDetail = !this.isShowDetail;
     },
@@ -176,7 +231,8 @@ export default {
         this.search = [];
         this.search = this.users.filter((user) => {
           return (
-            user.personalAccount.email.match(this.searchKey) ||
+            user.user.name.match(this.searchKey) ||
+            user.user.email.match(this.searchKey) ||
             user.orderId.match(this.searchKey)
           );
         });
@@ -189,8 +245,6 @@ export default {
         let to = page * perPage;
         this.search = this.users.slice(from, to);
 
-        // this.page = 1;
-        // this.getCurrentPage();
         this.setPages(this.users);
       }
     },
@@ -201,10 +255,6 @@ export default {
         this.pages.push(index);
       }
     },
-    // changePage(item) {
-    //   this.page = item;
-    //   this.getCurrentPage();
-    // },
   },
 };
 </script>
@@ -237,7 +287,7 @@ button.page-link {
   left: 0;
   height: 95vh;
   width: 10%;
-  background-color: #6be1c9;
+  background-color: #6ca2ce;
   overflow-x: hidden;
   padding-top: 20px;
 }
@@ -256,7 +306,7 @@ button.page-link {
 .main {
   width: 90%;
   padding: 20px 10px;
-  background-color: #b8f4e8;
+  background-color: #5fb5fe;
 }
 
 .padding-body {

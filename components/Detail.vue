@@ -17,16 +17,16 @@
       </div>
       <div style="padding-left: 10px">
         <p>
-          : <span>{{ userInfo.voucher }}</span>
+          : <span>{{ userInfo.payment.voucherCode }}</span>
         </p>
         <p>
-          : <span>{{ userInfo.payment.status }}</span>
+          : <span>{{ userInfo.payment.paymentStatus }}</span>
         </p>
         <p>
           : <span>{{ userInfo.createdAt }}</span>
         </p>
         <p>
-          : <span>{{ userInfo.payment.bank }}</span>
+          : <span>{{ userInfo.payment.paymentBank }}</span>
         </p>
       </div>
     </div>
